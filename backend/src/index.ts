@@ -13,10 +13,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// app.get('/test', async (req: Request, res: Response) => {
-//     console.log(chalk.hex('#03befc').bold("~ Test API fetched!"));
-//     res.status(200).json({ message: "Hello" });
-// });
+app.get("/health", async (req: Request, res: Response) => {
+    res.send({ message: "Health OK! :)" });
+});
 
 app.use("/api/my/user", myUserRoutes);
 
