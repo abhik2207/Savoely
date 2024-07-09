@@ -5,7 +5,6 @@ import AuthCallbackPage from "./pages/AuthCallbackPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import ProtectedRoute from "./auth/ProtectedRoute";
 
-
 function AppRoutes() {
     return (
         <Routes>
@@ -18,6 +17,5 @@ function AppRoutes() {
         </Routes>
     )
 }
-
 
 export default AppRoutes;
