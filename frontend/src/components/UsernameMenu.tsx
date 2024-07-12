@@ -19,6 +19,9 @@ function UsernameMenu() {
                 <DropdownMenuItem>
                     <Link to="/user-profile" className="font-bold hover:text-orange-500 transition-all">User profile</Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Link to="/manage-restaurant" className="font-bold hover:text-orange-500 transition-all">Manage Restaurant</Link>
+                </DropdownMenuItem>
                 <Separator />
                 <DropdownMenuItem>
                     <Button className="flex flex-1 font-bold bg-orange-500 w-full" onClick={() => logout()}>Log out</Button>

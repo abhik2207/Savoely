@@ -103,7 +103,4 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
     )
 }
 
-export default UserProfileForm
-
-
-
+export default UserProfileForm;
