@@ -26,14 +26,14 @@ export default function SearchResultCard({ restaurant }: Props) {
                             </span>
                         ))}
                     </div>
-                    <div className="flex gap-2 flex-col">
+                    <div className="flex gap-2 flex-col md:items-end">
                         <div className="flex items-center gap-1 text-green-600">
                             <Clock className="text-green-600" />
                             {restaurant.estimatedDeliveryTime} mins
                         </div>
                         <div className="flex items-center gap-1">
                             <Banknote />
-                            Delivery from ₹{(restaurant.deliveryPrice / 50).toFixed(2)}
+                            Delivery from ₹{(restaurant.deliveryPrice / 2).toFixed(2)}
                         </div>
                     </div>
                 </div>
