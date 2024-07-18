@@ -6,7 +6,7 @@ type Props = {
     onPageChange: (page: number) => void;
 }
 
-export default function PaginationSelectore({ page, pages, onPageChange }: Props) {
+export default function PaginationSelector({ page, pages, onPageChange }: Props) {
     const pageNumbers = [];
     for (let i = 1; i <= pages; i++) {
         pageNumbers.push(i);
@@ -15,9 +15,11 @@ export default function PaginationSelectore({ page, pages, onPageChange }: Props
     return (
         <Pagination>
             <PaginationContent>
-                <PaginationItem>
-                    <PaginationPrevious href="#" onClick={() => onPageChange(page - 1)} />
-                </PaginationItem>
+                {page !== 1 && (
+                    <PaginationItem>
+                        <PaginationPrevious href="#" onClick={() => onPageChange(page - 1)} />
+                    </PaginationItem>
+                )}
 
                 {pageNumbers.map((number, index) => (
                     <PaginationItem key={index}>
@@ -26,7 +28,7 @@ export default function PaginationSelectore({ page, pages, onPageChange }: Props
                         </PaginationLink>
                     </PaginationItem>
                 ))}
-                
+
                 {page !== pageNumbers.length && (
                     <PaginationItem>
                         <PaginationNext href="#" onClick={() => onPageChange(page + 1)} />
