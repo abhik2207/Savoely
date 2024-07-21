@@ -9,9 +9,10 @@ import { useGetMyUser } from "../api/MyUserAPI";
 type Props = {
     onCheckout: (userFormData: UserFormData) => void;
     disabled: boolean;
+    isLoading: boolean;
 }
 
-export default function CheckoutButton({ onCheckout, disabled }: Props) {
+export default function CheckoutButton({ onCheckout, disabled, isLoading }: Props) {
     const { isLoading: isAuthLoading, isAuthenticated, loginWithRedirect } = useAuth0();
     const { pathname } = useLocation();
 
@@ -31,7 +32,7 @@ export default function CheckoutButton({ onCheckout, disabled }: Props) {
         )
     }
 
-    if (isAuthLoading || !currentUser) {
+    if (isAuthLoading || !currentUser || isLoading) {
         return (
             <LoadingButton />
         )
