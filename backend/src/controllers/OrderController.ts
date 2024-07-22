@@ -97,8 +97,8 @@ const createLineItems = (checkoutSessionRequest: CheckoutSessionRequest, menuIte
 
         const line_items: Stripe.Checkout.SessionCreateParams.LineItem = {
             price_data: {
-                currency: "usd", // Change karne ki zarurat pad sakti hai
-                unit_amount: menuItem.price / 2, // Change karne ki zarurat pad sakti hai
+                currency: "inr", // Change karne ki zarurat pad sakti hai
+                unit_amount: menuItem.price * 50, // Change karne ki zarurat pad sakti hai
                 product_data: {
                     name: menuItem.name
                 }
@@ -120,8 +120,8 @@ const createSession = async (lineItems: Stripe.Checkout.SessionCreateParams.Line
                     display_name: "Delivery",
                     type: "fixed_amount",
                     fixed_amount: {
-                        amount: deliveryPrice / 2, // Change karne ki zarurat pad sakti hai
-                        currency: "usd" // Change karne ki zarurat pad sakti hai
+                        amount: deliveryPrice * 50, // Change karne ki zarurat pad sakti hai
+                        currency: "inr" // Change karne ki zarurat pad sakti hai
                     }
                 }
             }
