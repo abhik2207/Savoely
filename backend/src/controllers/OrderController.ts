@@ -7,6 +7,22 @@ const STRIPE = new Stripe(process.env.STRIPE_API_KEY as string);
 const FRONTEND_URL = process.env.FRONTEND_URL as string;
 const STRIPE_ENDPOINT_SECRET = process.env.STRIPE_WEBHOOK_SECRET as string;
 
+const getMyOrders = async (req: Request, res: Response) => {
+    try {
+        const orders = await Order.find({ user: req.userId }).populate("restaurant").populate("user");
+
+        if(!orders) {
+            return res.status(404).json({ message: "Orders not found!" });
+        }
+        
+        res.json(orders);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Error while getting orders!" });
+    }
+}
+
 type CheckoutSessionRequest = {
     cartItems: {
         menuItemId: string;
@@ -34,11 +50,11 @@ const stripeWebhookHandler = async (req: Request, res: Response) => {
         return res.status(400).send(`WEBHOOK ERROR: ${err.message}`);
     }
 
-    if(event.type === "checkout.session.completed"){
+    if (event.type === "checkout.session.completed") {
         const order = await Order.findById(event.data.object.metadata?.orderId);
 
-        if(!order){
-            return res.status(404).json({message:"Order not found!"});
+        if (!order) {
+            return res.status(404).json({ message: "Order not found!" });
         }
 
         order.totalAmount = event.data.object.amount_total;
@@ -138,9 +154,8 @@ const createSession = async (lineItems: Stripe.Checkout.SessionCreateParams.Line
     return sessionData;
 }
 
-
-
 export default {
     createCheckoutSession,
-    stripeWebhookHandler
+    stripeWebhookHandler,
+    getMyOrders
 }
